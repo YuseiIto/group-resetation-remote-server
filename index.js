@@ -3,20 +3,41 @@ const WebSocket = require("ws");
 
 const wss = new WebSocket.Server({ port: 50000 });
 
+const hosts = [];
+
+function broadcastNext() {
+    for (const ws of hosts) {
+        ws.send("next");
+    }
+}
+
+function broadcastPrev() {
+    for (const ws of hosts) {
+        ws.send("prev");
+    }
+}
+
 wss.on("connection", (ws) => {
     console.log("Connection established with a client!");
     let isReady = false;
+    let type = "host"; // 'host' or 'opetator'
 
-    setInterval(function() {
-        if (isReady) {
-            ws.send("next");
-        }
-    }, 1500);
     ws.on("message", (message) => {
         console.log(`received a massage : ${message}`);
-        if (message === "ready") {
-            isReady = true;
-            console.log("Now client is ready!");
+        switch (message) {
+            case "ready":
+                isReady = true;
+                hosts.push(ws);
+                console.log("Signal: ready");
+                break;
+            case "next":
+                broadcastNext();
+                console.log("Signal : next");
+                break;
+            case "prev":
+                broadcastPrev();
+                console.log("Signal : prev");
+                break;
         }
     });
 });
