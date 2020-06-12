@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Yusei Ito <yuseikun@Outlook.jp>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^7.3.0"
+  }
 }
