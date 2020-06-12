@@ -1,0 +1,22 @@
+# ./docker-compose.yml
+version: "2"
+services:
+  app:
+    image: node:latest
+    volumes:
+      - ./:/
+    working_dir: /
+    ports:
+      - "50000:50000"
+    environment:
+      VIRTUAL_HOST: nextprev.yuseiito.com
+      LETSENCRYPT_HOST: nextprev.yuseiito.com
+      LETSENCRYPT_EMAIL: yuseikun@outlook.jp
+      VIRTUAL_PORT: 50000
+      HTTPS_METHOD: noredirect
+    restart: always
+    command: [sh, -c, node index.js]
+networks:
+  default:
+    external:
+      name: shared
