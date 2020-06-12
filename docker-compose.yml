@@ -15,7 +15,7 @@ services:
       VIRTUAL_PORT: 50000
       HTTPS_METHOD: noredirect
     restart: always
-    command: [sh, -c, node index.js]
+    command: [sh, -c, npm install && node index.js]
 networks:
   default:
     external:
