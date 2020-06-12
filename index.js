@@ -1,4 +1,6 @@
 "use strict";
+console.log("Server started");
+
 const WebSocket = require("ws");
 
 const wss = new WebSocket.Server({ port: 50000 });
