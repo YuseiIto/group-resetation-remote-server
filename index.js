@@ -19,6 +19,14 @@ function broadcastPrev() {
     }
 }
 
+setInterval(function() {
+    for (const e of hosts) {
+        hosts.send("check");
+    }
+
+    hosts = [];
+}, 10000);
+
 wss.on("connection", (ws) => {
     console.log("Connection established with a client!");
     let isReady = false;
