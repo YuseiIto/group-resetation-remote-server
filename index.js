@@ -7,15 +7,11 @@ const wss = new WebSocket.Server({ port: 50000 });
 
 let hosts = [];
 
-function broadcastNext() {
+function broadcast(messageType, spaceId) {
     for (const ws of hosts) {
-        ws.ws.send("next");
-    }
-}
-
-function broadcastPrev() {
-    for (const ws of hosts) {
-        ws.ws.send("prev");
+        if (ws.spaceId == spaceId) {
+            ws.ws.send(messageType);
+        }
     }
 }
 
@@ -44,16 +40,14 @@ wss.on("connection", (ws) => {
             case "ready":
                 isReady = true;
                 hosts.push({ ws, spaceId });
-                console.log("Signal: ready");
                 break;
             case "next":
-                broadcastNext();
-                console.log("Signal : next");
+                broadcast('next', spaceId);
                 break;
             case "prev":
-                broadcastPrev();
-                console.log("Signal : prev");
+                broadcast('prev', spaceId);
                 break;
         }
+        console.log(`Signal ${message}@${spaceId} `)
     });
 });
