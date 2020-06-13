@@ -21,7 +21,7 @@ function broadcastPrev() {
 
 setInterval(function() {
     for (const e of hosts) {
-        hosts.send("check");
+        e.send("check");
     }
 
     hosts = [];
