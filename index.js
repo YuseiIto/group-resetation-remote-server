@@ -36,7 +36,7 @@ wss.on("connection", (ws) => {
 
     ws.on("message", (data) => {
 
-        const [message, spaceId] = data.split('#').map()
+        const [message, spaceId] = data.split('#').map(x => x);
 
         console.log(`received a massage : ${message}`);
 
