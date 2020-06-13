@@ -9,8 +9,8 @@ services:
     ports:
       - "50000:50000"
     environment:
-      VIRTUAL_HOST: server.nextprev.yuseiito.com
-      LETSENCRYPT_HOST: server.nextprev.yuseiito.com
+      VIRTUAL_HOST: server.prevnext.yuseiito.com
+      LETSENCRYPT_HOST: server.prevnext.yuseiito.com
       LETSENCRYPT_EMAIL: yuseikun@outlook.jp
       VIRTUAL_PORT: 50000
       HTTPS_METHOD: noredirect
