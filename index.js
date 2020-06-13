@@ -9,19 +9,19 @@ let hosts = [];
 
 function broadcastNext() {
     for (const ws of hosts) {
-        ws.send("next");
+        ws.ws.send("next");
     }
 }
 
 function broadcastPrev() {
     for (const ws of hosts) {
-        ws.send("prev");
+        ws.ws.send("prev");
     }
 }
 
 setInterval(function() {
-    for (const e of hosts) {
-        e.send("check");
+    for (const ws of hosts) {
+        ws.ws.send("check");
     }
 
     hosts = [];
@@ -43,7 +43,7 @@ wss.on("connection", (ws) => {
         switch (message) {
             case "ready":
                 isReady = true;
-                hosts.push(ws);
+                hosts.push({ ws, spaceId });
                 console.log("Signal: ready");
                 break;
             case "next":
