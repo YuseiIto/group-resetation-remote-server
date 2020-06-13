@@ -25,6 +25,8 @@ setInterval(function() {
     }
 
     hosts = [];
+
+    console.log("Hostlists are released!");
 }, 10000);
 
 wss.on("connection", (ws) => {
