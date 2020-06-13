@@ -34,8 +34,12 @@ wss.on("connection", (ws) => {
     let isReady = false;
     let type = "host"; // 'host' or 'opetator'
 
-    ws.on("message", (message) => {
+    ws.on("message", (data) => {
+
+        const [message, spaceId] = data.split('#').map()
+
         console.log(`received a massage : ${message}`);
+
         switch (message) {
             case "ready":
                 isReady = true;
