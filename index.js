@@ -5,7 +5,7 @@ const WebSocket = require("ws");
 
 const wss = new WebSocket.Server({ port: 50000 });
 
-const hosts = [];
+let hosts = [];
 
 function broadcastNext() {
     for (const ws of hosts) {
