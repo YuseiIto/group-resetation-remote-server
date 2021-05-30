@@ -5,6 +5,6 @@
   "author": "Yusei Ito <yuseikun@Outlook.jp>",
   "license": "MIT",
   "dependencies": {
-    "ws": "^7.3.0"
+    "ws": "^7.4.6"
   }
 }
